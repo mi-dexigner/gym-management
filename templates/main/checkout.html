@@ -1,0 +1,115 @@
+{% extends 'layouts/base.html'%}
+{% load static %}
+{% block title %}Checkout{% endblock %}
+{% block content %}
+<!-- about section -->
+<section class=" position-relative">
+    {% include 'partials/header.html' %}
+    </section>
+    <!-- end slider section -->
+  </div>
+ <!-- Header -->
+ <!-- Main Start -->
+    <section class="container my-4">
+         <div class="heading_container">
+    	<h2 class="text-center">Checkout </h2>
+<!--        <p class="fs-500 text-center">plans that work for everyone</p>-->
+ </div>
+    </section>
+  <!-- Main Start -->
+    <main>
+		<!-- Services -->
+		<section class="container my-4">
+				<table class="table table-bordered">
+					<thead class="table-warning">
+						<tr>
+							<th>Plan</th>
+							<th>Plan Detail</th>
+							<th>Payment For</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								<table class="table-bordered table">
+									<tr>
+										<th>Name</th>
+										<td>{{package_detail.package_name}}</td>
+									</tr>
+									<tr>
+										<th>Price</th>
+										<td>${{package_detail.price}}</td>
+									</tr>
+									<tr>
+										<th>Max Member</th>
+										<td>{{package_detail.max_member}}</td>
+									</tr>
+									<tr>
+										<th>Already Registered</th>
+										<td>15</td>
+									</tr>
+									<tr>
+										<th>Balance Seats</th>
+										<td>15</td>
+									</tr>
+								</table>
+							</td>
+							<td>
+								<ul class="list-unstyled">
+					              {% for feature in package_detail.packagefeatures_set.all %}
+                        <li>{{ feature.name }}</li>
+                    {% endfor %}
+					            </ul>
+							</td>
+							<td>
+								<table class="table table-bordered">
+									{% for discount in package_detail.packagediscount_set.all|dictsort:"total_months" %}
+									<tr>
+										<td><input data-planprice="{{package_detail.price}}" data-discount="{{ discount.total_discounts }}" type="radio" id="validity{{ discount.id }}" name="validity" class="select-validity" value="{{ discount.total_months }}" /></td>
+										<th><label for="validity{{ discount.total_discounts }}">{{ discount.total_months }} Month</label></th>
+										<td>{{ discount.total_discounts }}%</td>
+									</tr>
+									{% endfor %}
+								</table>
+							</td>
+						</tr>
+					</tbody>
+					<tfoot class="table-info">
+						<tr>
+							<td></td>
+							<th>Total Amount</th>
+							<td><b>$<span class="totalAmount">{{package_detail.price}}</span></b></td>
+						</tr>
+						<tr>
+							<td colspan="2"></td>
+							<td>
+								<form method="post" action="{% url 'main:checkout-session' package_detail.id %}">
+									{% csrf_token %}
+									<input type="submit" value="Proceed to Payment" class="btn btn-primary" />
+								</form>
+							</td>
+						</tr>
+					</tfoot>
+				</table>
+		</section>
+		<!-- End -->
+    </main>
+    <!-- End -->
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".select-validity").on('click',function(){
+			var _planPrice=$(this).attr('data-planprice');
+			var _planDisc=$(this).attr('data-discount');
+			var _planValid=$(this).val();
+			var _totalPrice=_planPrice*_planValid;
+			if(_planDisc>0){
+				var _discountedPrice=_totalPrice*_planDisc/100;
+				_discountedPrice=_totalPrice-_discountedPrice;
+			}else{
+				var _discountedPrice=_totalPrice;
+			}
+			$(".totalAmount").text(_discountedPrice);
+		});
+	});
+</script>
+{% endblock %}

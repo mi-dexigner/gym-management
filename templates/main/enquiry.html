@@ -1,0 +1,66 @@
+{% extends 'layouts/base.html'%}
+{% load static %}
+{% block title %}EnQuiry{% endblock %}
+{% block content %}
+<section class=" position-relative">
+    {% include 'partials/header.html' %}
+    </section>
+    <!-- end slider section -->
+  </div>
+ <!-- Header -->
+ <!-- Main Start -->
+    <section class="container mt-4">
+         <div class="heading_container">
+    	<h2 class="text-center">Contact Us </h2>
+<!--        <p class="fs-500 text-center">plans that work for everyone</p>-->
+ </div>
+    </section>
+
+<!-- contact section -->
+  <section class="contact_section layout_padding">
+    <div class="container">
+      <div class="layout_padding2-top">
+        <div class="row">
+          <div class="col-md-6 ">
+            <form method="post" action=".">
+				{% csrf_token %}
+              <div class="contact_form-container">
+                <div>
+					{{form.as_p}}
+<!--                  <div>-->
+<!--                    <input type="text" placeholder="Name" />-->
+<!--                  </div>-->
+<!--                  <div>-->
+<!--                    <input type="email" placeholder="Email" />-->
+<!--                  </div>-->
+<!--                  <div>-->
+<!--                    <input type="text" placeholder="Phone Number" />-->
+<!--                  </div>-->
+<!--                  <div class="mt-5">-->
+<!--                    <input type="text" placeholder="Message" />-->
+<!--                  </div>-->
+                  <div class="mt-5">
+                    <button type="submit">
+                      Send
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="col-md-6">
+            <div class="map_container">
+              <div class="map-responsive">
+                <iframe
+                  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA0s1a7phLN0iaD6-UE7m4qP-z21pH0eSc&q=Eiffel+Tower+Paris+France"
+                  width="600" height="300" frameborder="0" style="border:0; width: 100%; height:100%"
+                  allowfullscreen></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- end contact section -->
+{% endblock %}

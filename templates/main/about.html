@@ -1,0 +1,33 @@
+{% extends 'layouts/base.html'%}
+{% load static %}
+{% block title %}About Page{% endblock %}
+{% block content %}
+ <!-- about section -->
+<section class=" position-relative">
+    {% include 'partials/header.html' %}
+    </section>
+    <!-- end slider section -->
+  </div>
+ <!-- Header -->
+  <section class="about_section layout_padding">
+    <div class="container">
+      <div class="heading_container">
+        <h2>
+          About Energym
+        </h2>
+      </div>
+      <div class="box">
+        <div class="img-box">
+          <img src="{% static 'images/about-img.png' %}" alt="">
+        </div>
+        <div class="detail-box">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- end about section -->
+{% endblock %}

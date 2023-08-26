@@ -1,0 +1,35 @@
+{% extends 'layouts/base.html'%}
+{% load static %}
+{% block title %}Cancel Order{% endblock %}
+{% block content %}
+<!-- about section -->
+<section class=" position-relative">
+    {% include 'partials/header.html' %}
+    </section>
+    <!-- end slider section -->
+<!-- Main Start -->
+    <section class="container mt-4">
+         <div class="heading_container">
+    	<h2 class="text-center">Order Received Successfully</h2>
+<!--        <p class="fs-500 text-center">plans that work for everyone</p>-->
+ </div>
+    </section>
+<main>
+    <div class="container">
+        <div class="row">
+            {{success}}
+            {{customer}}
+         <h1>Thanks for your order!</h1>
+    <p>
+      We appreciate your business!
+      If you have any questions, please email
+      <a href="mailto:orders@example.com">orders@example.com</a>.
+    </p>
+
+        </div>
+    </div>
+</main>
+  </div>
+ <!-- Header -->
+
+{% endblock %}

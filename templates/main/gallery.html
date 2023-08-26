@@ -1,0 +1,27 @@
+{% extends 'layouts/base.html'%}
+{% load static %}
+{% block title %}Gallery{% endblock %}
+{% block content %}
+  <!-- Main Start -->
+    <main>
+
+		<!-- Testimonials -->
+		<section class="container-fluid bg-light py-4 mt-5 border-top border-bottom">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+							<div class="gallery">
+								{% for gallery in galleries %}
+								<a data-lightbox="home-gallery" href="{{ gallery.img.url }}">
+									<img src="{{ gallery.img.url }}" width="300" class="img-thumbnail" alt="{{gallery.title}}"></a>
+								{% endfor %}
+							</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- End Testimonials -->
+
+    </main>
+    <!-- End -->
+{% endblock %}
