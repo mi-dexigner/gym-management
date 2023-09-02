@@ -13,12 +13,12 @@
     <div class="container">
       <div class="heading_container">
         <h2>
-          About Energym
+          About {{setting.site_title}}
         </h2>
       </div>
       <div class="box">
         <div class="img-box">
-          <img src="{% static 'images/about-img.png' %}" alt="">
+          <img src="{{setting.site_logo.url}}" alt="{{setting.site_title}}">
         </div>
         <div class="detail-box">
           <p>

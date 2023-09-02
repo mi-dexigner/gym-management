@@ -7,11 +7,6 @@
     {% include 'partials/header.html' %}
       <div class="slider_container">
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-          <ol class="carousel-indicators">
-            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-          </ol>
           <div class="carousel-inner">
             <div class="carousel-item active">
               <div class="container">
@@ -29,66 +24,7 @@
                         labore et dolore magna aliqua. Ut enim ad minim veniam
                       </p>
                       <div class="btn-box">
-                        <a href="" class="btn-1">
-                          Read More
-                        </a>
-                        <a href="" class="btn-2">
-                          Get A Quote
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-item ">
-              <div class="container">
-                <div class="row">
-                  <div class="col-lg-6 col-md-7 offset-md-6 offset-md-5">
-                    <div class="detail-box">
-                      <h2>
-                        Get Your Body
-                      </h2>
-                      <h1>
-                        Fitness Here
-                      </h1>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing e mlit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam
-                      </p>
-                      <div class="btn-box">
-                        <a href="" class="btn-1">
-                          Read More
-                        </a>
-                        <a href="" class="btn-2">
-                          Get A Quote
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-item ">
-              <div class="container">
-                <div class="row">
-                  <div class="col-lg-6 col-md-7 offset-md-6 offset-md-5">
-                    <div class="detail-box">
-                      <h2>
-                        Get Your Body
-                      </h2>
-                      <h1>
-                        Fitness Here
-                      </h1>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam
-                      </p>
-                      <div class="btn-box">
-                        <a href="" class="btn-1">
-                          Read More
-                        </a>
-                        <a href="" class="btn-2">
+                        <a href="{% url 'main:contact'%}" class="btn-2">
                           Get A Quote
                         </a>
                       </div>
@@ -111,19 +47,18 @@
     <div class="container">
       <div class="heading_container">
         <h2>
-          About Energym
+          About {{setting.site_title}}
         </h2>
       </div>
       <div class="box">
         <div class="img-box">
-          <img src="{% static 'images/about-img.png' %}" alt="About">
+          <img src="{{setting.site_logo.url}}" alt="{{setting.site_title}}">
         </div>
         <div class="detail-box">
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua. Ut enim ad minim veniam, quis
+            Fitness First is a global gym chain known for its comprehensive fitness facilities, group fitness classes, personal training services, and nutrition support. They offer various membership options, focus on creating a clean and safe workout environment, and often host special events and challenges. Fitness First emphasizes community, well-being, and customized fitness solutions for individuals of all fitness levels.
           </p>
-          <a href="">
+          <a href="{% url 'main:about'%}">
             Read More
           </a>
         </div>
