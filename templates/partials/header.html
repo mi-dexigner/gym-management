@@ -9,19 +9,19 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <div class="d-flex  flex-column flex-lg-row align-items-center">
                 <ul class="navbar-nav  ">
-                  <li class="nav-item active">
+                  <li class="nav-item {% if request.path == '/' %} active {% endif %}">
                     <a class="nav-link" href="{% url 'main:home' %}">Home <span class="sr-only">(current)</span></a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item {% if request.path == '/about/' %} active {% endif %}">
                     <a class="nav-link" href="{% url 'main:about' %}">About </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item {% if request.path == '/services/' %} active {% endif %}">
                     <a class="nav-link" href="{% url 'main:services' %}">Services </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item {% if request.path == '/pricing/' %} active {% endif %}">
                     <a class="nav-link" href="{% url 'main:pricing' %}">Pricing </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item {% if request.path == '/contact/' %} active {% endif %}">
                     <a class="nav-link" href="{% url 'main:contact' %}">Contact Us</a>
                   </li>
                      {% if user.is_authenticated %}
