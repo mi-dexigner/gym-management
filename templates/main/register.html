@@ -1,8 +1,11 @@
 {% extends 'layouts/base.html'%}
 {% load static %}
-{% block title %}Register  {% endblock %}
+{% block title %}Register {{setting.site_title}} | {{setting.site_description}}{% endblock %}
 {% block content %}
-
+<!-- about section -->
+<section class=" position-relative">
+    {% include 'partials/header.html' %}
+    </section>
 <!-- Main Start -->
     <main>
 		<!-- Services -->

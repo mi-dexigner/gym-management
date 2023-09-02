@@ -8,19 +8,6 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 
-#Banners
-class Banner(models.Model):
-    img = models.ImageField(upload_to='banners/')
-    alt_text = models.CharField(max_length=150)
-
-    class Meta:
-        verbose_name_plural ='Banners'
-
-    def __str__(self):
-        return f'{self.alt_text} | {self.image_tag}'
-
-    def image_tag(self):
-        return mark_safe('<img src="%s" width="80" />' % (self.img.url) )
 
 class Service(models.Model):
     title = models.CharField(max_length=150)
@@ -62,19 +49,6 @@ class Enquiry(models.Model):
     def __str__(self):
         return self.full_name
 
-class Gallery(models.Model):
-    title = models.CharField(max_length=150)
-    img = models.ImageField(upload_to='gallery/',null=True)
-
-    class Meta:
-        verbose_name_plural ='Galleries'
-
-    def __str__(self):
-        return self.title
-
-    def image_tag(self):
-        return mark_safe('<img src="%s" width="80" />' % (self.img.url) )
-
 
 class Package(models.Model):
     package_name = models.CharField(max_length=150,null=False)
@@ -82,6 +56,17 @@ class Package(models.Model):
     price = models.PositiveIntegerField()
     max_member = models.PositiveIntegerField(null=True)
     highlight_status = models.BooleanField(default=False)
+
+    def already_registered_members_count(self):
+        return self.subscription_set.count()  # Assuming "subscription_set" is the related name
+
+    def remaining_slots(self):
+        if self.max_member is not None:
+            registered_count = self.already_registered_members_count()
+            remaining = max(0, self.max_member - registered_count)
+            return remaining
+        else:
+            return None  # No maximum limit defined
 
     class Meta:
         verbose_name_plural ='Packages'
@@ -96,6 +81,8 @@ class PackageFeatures(models.Model):
 
         class Meta:
             verbose_name_plural = 'Package Details'
+
+
 
         def __str__(self):
             return f'{self.name}'
@@ -140,6 +127,7 @@ class Subscription(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE,null=True)
     package = models.ForeignKey(Package,on_delete=models.CASCADE, null=True)
     price = models.CharField(max_length=60)
+    date_added = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         verbose_name_plural = 'Order'
@@ -147,3 +135,20 @@ class Subscription(models.Model):
     def __str__(self):
         return str(self.package)
 
+class SiteSettings(models.Model):
+    site_logo = models.ImageField(upload_to='site_logo/')
+    site_title = models.CharField(max_length=200)
+    site_description = models.TextField()
+    copyright_text = models.CharField(max_length=200)
+    contact_email = models.EmailField()
+    contact_phone = models.CharField(max_length=20)
+    contact_address = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.site_title
+
+    def logo(self):
+        if self.site_logo:
+            return mark_safe('<img src="%s" width="80" />' % (self.site_logo.url) )
+        else:
+            return 'no-image'

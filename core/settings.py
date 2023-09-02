@@ -144,7 +144,7 @@ JAZZMIN_SETTINGS = {
     # Title on the brand (19 chars max) (defaults to current_admin_site.site_header if absent or None)
     "site_brand": "GMS",
 
-    "order_with_respect_to": ["auth", "main.Banner", "main.Service", "main.Enquiry","main.Gallery","main.Page","main.Faq","main.Package","main.PackageFeatures","main.PackageDiscount"],
+    "order_with_respect_to": ["auth", "main.Service", "main.Enquiry","main.Page","main.Faq","main.Package","main.PackageFeatures"],
 
 }
 

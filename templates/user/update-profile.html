@@ -1,22 +1,25 @@
-{% extends 'layouts/base.html'%}
-{% load static %}
-{% block title %}Login{% endblock %}
+{% extends 'layouts/base.html' %}
 {% block content %}
 <!-- about section -->
 <section class=" position-relative">
     {% include 'partials/header.html' %}
     </section>
-<!-- Main Start -->
+    <!-- Main Start -->
     <main>
 		<!-- Services -->
 		<section class="container my-4">
-			<h1 class="text-center mb-4 section-heading border-bottom pb-2">Login</h1>
 			<div class="row">
-				<div class="col-md-6 offset-3">
-					{% if not request.user.is_authenticated %}
-					<form method="post" action=".">
-						{% csrf_token %}
+				<div class="col-3">
+					{% include 'partials/left-sidebar.html' %}
+				</div>
+				<div class="col-9">
+					<h3 class="mb-4 border-bottom pb-1">Update Profile</h3>
+					{% if msg %}
+					<p class="text-success">{{msg}}</p>
+					{% endif %}
+					<form method="post" action="">
 						<table class="table table-bordered">
+							{% csrf_token %}
 							{{form.as_table}}
 							<tr>
 								<td colspan="2">
@@ -25,15 +28,10 @@
 							</tr>
 						</table>
 					</form>
-				{% else %}
-<p>Already Login in {{user.username}}</p>
-<a href="{% url 'main:home' %}">Back to Home</a>
-{% endif %}
 				</div>
 			</div>
 		</section>
 		<!-- End -->
     </main>
     <!-- End -->
-
 {% endblock %}

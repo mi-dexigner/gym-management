@@ -1,6 +1,6 @@
 {% extends 'layouts/base.html'%}
 {% load static %}
-{% block title %}Checkout{% endblock %}
+{% block title %}Checkout {{setting.site_title}} | {{setting.site_description}}{% endblock %}
 {% block content %}
 <!-- about section -->
 <section class=" position-relative">
@@ -46,11 +46,11 @@
 									</tr>
 									<tr>
 										<th>Already Registered</th>
-										<td>15</td>
+										<td>{{package_detail.already_registered_members_count}}</td>
 									</tr>
 									<tr>
 										<th>Balance Seats</th>
-										<td>15</td>
+										<td>{{package_detail.remaining_slots}}</td>
 									</tr>
 								</table>
 							</td>
@@ -62,6 +62,7 @@
 					            </ul>
 							</td>
 							<td>
+								<p>Master Credit, Card and Debit Card</p>
 								<table class="table table-bordered">
 									{% for discount in package_detail.packagediscount_set.all|dictsort:"total_months" %}
 									<tr>
